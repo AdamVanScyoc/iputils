@@ -205,7 +205,8 @@ static int measure_inner_loop(struct run_state *ctl, struct measure_vars *mv)
 	long histime1 = 0;
 	long recvtime;
 	long sendtime;
-	struct pollfd p = { .fd = ctl->sock_raw, .events = POLLIN | POLLHUP };
+	//struct pollfd p = { .fd = ctl->sock_raw, .events = POLLIN | POLLHUP };
+	struct pollfd p2 = { .fd = 0, .events = POLLIN | POLLHUP };
 
 	{
 		long tmo = ctl->rtt + ctl->rtt_sigma;
@@ -214,11 +215,14 @@ static int measure_inner_loop(struct run_state *ctl, struct measure_vars *mv)
 		mv->tout.tv_nsec = (tmo - (tmo / 1000) * 1000) * 1000000;
 	}
 
-	if ((mv->count = ppoll(&p, 1, &mv->tout, NULL)) <= 0)
+	/*
+	if ((mv->count = ppoll(&p2, 1, &mv->tout, NULL)) <= 0)
 		return BREAK;
+		*/
 
 	clock_gettime(CLOCK_REALTIME, &mv->ts1);
-	mv->cc = recvfrom(ctl->sock_raw, (char *)mv->packet, PACKET_IN, 0, NULL, &mv->length);
+	//mv->cc = recvfrom(ctl->sock_raw, (char *)mv->packet, PACKET_IN, 0, NULL, &mv->length);
+	mv->cc = read(0, (char *)mv->packet, PACKET_IN);
 
 	if (mv->cc < 0)
 		return (-1);
@@ -346,6 +350,7 @@ static int measure(struct run_state *ctl)
 	unsigned char opacket[64] = { 0 };
 	struct icmphdr *oicp = (struct icmphdr *)opacket;
 	struct pollfd p = { .fd = ctl->sock_raw, .events = POLLIN | POLLHUP };
+	struct pollfd p2 = { .fd = 0, .events = POLLIN | POLLHUP };
 
 	mv.ip = (struct iphdr *)mv.packet;
 	ctl->min_rtt = 0x7fffffff;
@@ -354,13 +359,14 @@ static int measure(struct run_state *ctl)
 
 	/* empties the icmp input queue */
  empty:
-	if (ppoll(&p, 1, &mv.tout, NULL)) {
+	//if (ppoll(&p, 1, &mv.tout, NULL)) {
+	if (1 /*ppoll(&p2, 1, &mv.tout, NULL)*/) {
 		mv.length = sizeof(struct sockaddr_in);
-		mv.cc = recvfrom(ctl->sock_raw, (char *)mv.packet, PACKET_IN, 0,
-			      NULL, &mv.length);
+		//mv.cc = recvfrom(ctl->sock_raw, (char *)mv.packet, PACKET_IN, 0,
+		mv.cc = read(0, (char *)mv.packet, PACKET_IN);
 		if (mv.cc < 0)
 			return -1;
-		goto empty;
+		//goto empty;
 	}
 
 	/*
@@ -405,8 +411,11 @@ static int measure(struct run_state *ctl)
 		    htonl((mv.ts1.tv_sec % (24 * 60 * 60)) * 1000 + mv.ts1.tv_nsec / 1000000);
 		oicp->checksum = in_cksum((unsigned short *)oicp, sizeof(*oicp) + 12);
 
+		/*
 		mv.count = sendto(ctl->sock_raw, (char *)opacket, sizeof(*oicp) + 12, 0,
 			       (struct sockaddr *)&ctl->server, sizeof(struct sockaddr_in));
+		*/
+		mv.count = sizeof(*oicp) + 12;
 
 		if (mv.count < 0) {
 			errno = EHOSTUNREACH;
@@ -421,6 +430,9 @@ static int measure(struct run_state *ctl)
 					escape = 1;
 					break;
 				case CONTINUE:
+					// XXX
+					return ret;
+					// XXX
 					continue;
 				default:
 					return ret;
@@ -534,8 +546,10 @@ int main(int argc, char **argv)
 	ctl.sock_raw = socket(AF_INET, SOCK_RAW, IPPROTO_ICMP);
 	if (ctl.sock_raw < 0)
 		error(1, errno, "socket");
+	/*
 	if (nice(-16) == -1)
 		error(1, errno, "nice");
+		*/
 	drop_rights();
 
 	if (isatty(fileno(stdin)) && isatty(fileno(stdout)))
