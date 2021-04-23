@@ -1313,12 +1313,15 @@ int ping4_receive_error_msg(struct ping_rts *rts, socket_st *sock)
 	msg.msg_control = cbuf;
 	msg.msg_controllen = sizeof(cbuf);
 
+	/*
 	res = recvmsg(sock->fd, &msg, MSG_ERRQUEUE | MSG_DONTWAIT);
 	if (res < 0) {
 		if (errno == EAGAIN || errno == EINTR)
 			local_errors++;
 		goto out;
 	}
+	*/
+	res = readv(0, &iov, msg.msg_iovlen);
 
 	e = NULL;
 	for (cmsgh = CMSG_FIRSTHDR(&msg); cmsgh; cmsgh = CMSG_NXTHDR(&msg, cmsgh)) {
@@ -1328,7 +1331,7 @@ int ping4_receive_error_msg(struct ping_rts *rts, socket_st *sock)
 		}
 	}
 	if (e == NULL)
-		abort();
+		exit(-1);//abort();
 
 	if (e->ee_origin == SO_EE_ORIGIN_LOCAL) {
 		local_errors++;
@@ -1547,10 +1550,12 @@ int ping4_parse_reply(struct ping_rts *rts, struct socket_st *sock,
 		if (!rts->broadcast_pings && !rts->multicast &&
 		    from->sin_addr.s_addr != rts->whereto.sin_addr.s_addr)
 			return 1;
+		/*
 		if (!is_ours(rts, sock, icp->un.echo.id))
-			return 1;			/* 'Twas not our ECHO */
+			return 1;			
 		if (!contains_pattern_in_payload(rts, (uint8_t *)(icp + 1)))
-			return 1;			/* 'Twas really not our ECHO */
+			return 1;			
+		*/
 		if (gather_statistics(rts, (uint8_t *)icp, sizeof(*icp), cc,
 				      ntohs(icp->un.echo.sequence),
 				      reply_ttl, 0, tv, pr_addr(rts, from, sizeof *from),

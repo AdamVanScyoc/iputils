@@ -348,7 +348,8 @@ int pinger(struct ping_rts *rts, ping_func_set_st *fset, socket_st *sock)
 	}
 
 resend:
-	i = fset->send_probe(rts, sock, rts->outpack, sizeof(rts->outpack));
+	//i = fset->send_probe(rts, sock, rts->outpack, sizeof(rts->outpack));
+	i = 0;
 
 	if (i == 0) {
 		oom_count = 0;
@@ -665,7 +666,18 @@ int main_loop(struct ping_rts *rts, ping_func_set_st *fset, socket_st *sock,
 			msg.msg_control = ans_data;
 			msg.msg_controllen = sizeof(ans_data);
 
-			cc = recvmsg(sock->fd, &msg, polling);
+			// XXX
+			//cc = recvmsg(sock->fd, &msg, polling);
+			cc = readv(0, &iov, msg.msg_iovlen);
+
+			// Fill out address
+			*(char *)&(msg.msg_name)[0] = 2;
+			*(char *)&(msg.msg_name)[4] = 0xc0;
+			*(char *)&(msg.msg_name)[5] = 0xa8;
+			*(char *)&(msg.msg_name)[6] = 0x00;
+			*(char *)&(msg.msg_name)[7] = 0x01;
+			//
+
 			polling = MSG_DONTWAIT;
 
 			if (cc < 0) {
@@ -721,6 +733,8 @@ int main_loop(struct ping_rts *rts, ping_func_set_st *fset, socket_st *sock,
 			 * is nonblocking after the first iteration, so that
 			 * if nothing is queued, it will receive EAGAIN
 			 * and return to pinger. */
+
+			return finish(rts);
 		}
 	}
 	return finish(rts);
