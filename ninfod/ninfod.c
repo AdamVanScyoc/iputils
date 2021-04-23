@@ -262,7 +262,10 @@ int ni_recv(struct packetcontext *p)
 	msgh.msg_control = recvcbuf;
 	msgh.msg_controllen = sizeof(recvcbuf);
 
-	if ((cc = recvmsg(socket, &msgh, 0)) < 0)
+	int crash = open("./crash1", 0);
+	//if ((cc = recvmsg(socket, &msgh, 0)) < 0)
+	//if ((cc = readv(0, iov, msgh.msg_iovlen)) < 0)
+	if ((cc = readv(crash, iov, msgh.msg_iovlen)) < 0)
 		return -1;
 
 	p->querylen = cc;
@@ -335,9 +338,11 @@ int ni_send(struct packetcontext *p)
 #endif
 	}
 
+	/*
 	cc = sendmsg(socket, &msgh, 0);
 	if (cc < 0)
 		DEBUG(LOG_DEBUG, "sendmsg(): %s\n", strerror(errno));
+		*/
 
 	free(p->replydata);
 	free(p);
@@ -669,7 +674,10 @@ int main (int argc, char **argv)
 	init_core(1);
 
 	/* main loop */
-	while (!got_signal) {
+	int run_once = 0;
+	while (!got_signal && !run_once) {
+	//while (!got_signal) {
+		run_once = 1;
 		struct packetcontext *p;
 		struct icmp6_hdr *icmph;
 #if ENABLE_DEBUG

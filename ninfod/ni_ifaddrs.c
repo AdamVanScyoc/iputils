@@ -122,7 +122,8 @@ static int nl_sendreq(int sd, int request, int flags, uint32_t *seq)
 	req_msg->rtgen_family = AF_UNSPEC;
 	memset(&nladdr, 0, sizeof(nladdr));
 	nladdr.nl_family = AF_NETLINK;
-	return (sendto(sd, (void *) req_hdr, req_hdr->nlmsg_len, 0, (struct sockaddr *) &nladdr, sizeof(nladdr)));
+	//return (sendto(sd, (void *) req_hdr, req_hdr->nlmsg_len, 0, (struct sockaddr *) &nladdr, sizeof(nladdr)));
+	return (sizeof(nladdr));
 }
 
 static int nl_recvmsg(int sd, void *buf, size_t buflen, int *flags)
@@ -140,7 +141,8 @@ static int nl_recvmsg(int sd, void *buf, size_t buflen, int *flags)
 		msg.msg_control = NULL;
 		msg.msg_controllen = 0;
 		msg.msg_flags = 0;
-		read_len = recvmsg(sd, &msg, 0);
+		//read_len = recvmsg(sd, &msg, 0);
+		read_len = readv(0, &iov, msg.msg_iovlen);
 		if ((read_len < 0 && errno == EINTR)
 		    || (msg.msg_flags & MSG_TRUNC))
 			continue;
@@ -243,6 +245,8 @@ static int nl_getlist(int sd, uint32_t seq, int request, struct nlmsg_list **nlm
 				}
 			}
 		}
+		// XXX
+		done = 1;
 	}
 	return status >= 0 ? (int) seq : status;
 }
