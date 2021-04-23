@@ -1,0 +1,2 @@
+#define PACKAGE_VERSION "20210202-7-g21d0826+"
+#define IPUTILS_VERSION(_prog) "%s from %s %s\n", _prog, PACKAGE_NAME, PACKAGE_VERSION

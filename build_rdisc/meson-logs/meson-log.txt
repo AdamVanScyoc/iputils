@@ -1,0 +1,820 @@
+Build started at 2021-04-17T23:31:55.719381
+Main binary: /usr/bin/python3
+Build Options: -DUSE_CAP=false
+Python system: Linux
+The Meson build system
+Version: 0.53.2
+Source dir: /fuzz/iputils
+Build dir: /fuzz/iputils/build_rdisc
+Build type: native build
+Project name: iputils
+Project version: 20210202
+No CFLAGS in the environment, not changing global flags.
+No LDFLAGS in the environment, not changing global flags.
+No CPPFLAGS in the environment, not changing global flags.
+Sanity testing C compiler: cc
+Is cross compiler: False.
+Sanity check compiler command line: cc /fuzz/iputils/build_rdisc/meson-private/sanitycheckc.c -o /fuzz/iputils/build_rdisc/meson-private/sanitycheckc.exe -pipe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /fuzz/iputils/build_rdisc/meson-private/sanitycheckc.exe
+C compiler for the build machine: cc (gcc 10.2.0 "cc (Ubuntu 10.2.0-5ubuntu1~20.04) 10.2.0")
+C linker for the build machine: cc ld.bfd 2.34
+No CFLAGS in the environment, not changing global flags.
+No LDFLAGS in the environment, not changing global flags.
+No CPPFLAGS in the environment, not changing global flags.
+Sanity testing C compiler: cc
+Is cross compiler: False.
+Sanity check compiler command line: cc /fuzz/iputils/build_rdisc/meson-private/sanitycheckc.c -o /fuzz/iputils/build_rdisc/meson-private/sanitycheckc.exe -pipe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command: /fuzz/iputils/build_rdisc/meson-private/sanitycheckc.exe
+C compiler for the host machine: cc (gcc 10.2.0 "cc (Ubuntu 10.2.0-5ubuntu1~20.04) 10.2.0")
+C linker for the host machine: cc ld.bfd 2.34
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Host machine cpu family: x86_64
+Host machine cpu: x86_64
+Target machine cpu family: x86_64
+Target machine cpu: x86_64
+Pkg-config binary for MachineChoice.HOST is not cached.
+Pkg-config binary missing from cross or native file, or env var undefined.
+Trying a default pkg-config fallback at pkg-config
+Trying pkg-config binary pkg-config for machine MachineChoice.HOST at ['/usr/bin/pkg-config']
+Found pkg-config: /usr/bin/pkg-config (0.29.1)
+Determining dependency 'systemd' with pkg-config executable '/usr/bin/pkg-config'
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --modversion systemd` -> 1
+
+CMake binary for MachineChoice.HOST is not cached
+CMake binary missing from cross or native file, or env var undefined.
+Trying a default CMake fallback at cmake
+Trying CMake binary cmake for machine MachineChoice.HOST at [None]
+Did not find CMake 'cmake'
+Found CMake: NO
+No CMake binary for machine MachineChoice.HOST not found. Giving up.
+Run-time dependency systemd found: NO (tried pkgconfig and cmake)
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpfx5t6624
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpfx5t6624/testfile.c -o /fuzz/iputils/build_rdisc/meson-private/tmpfx5t6624/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -std=c99 -D_GNU_SOURCE 
+
+Code:
+ 
+        #define __fpending meson_disable_define_of___fpending
+        
+        #include <limits.h>
+        #undef __fpending
+        
+        #ifdef __cplusplus
+        extern "C"
+        #endif
+        char __fpending (void);
+        
+        #if defined __stub___fpending || defined __stub_____fpending
+        fail fail fail this function is not going to work
+        #endif
+        
+        int main(void) {
+          return __fpending ();
+        }
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Checking for function "__fpending" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpn8qucn9m
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpn8qucn9m/testfile.c -o /fuzz/iputils/build_rdisc/meson-private/tmpn8qucn9m/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -std=c99 -D_GNU_SOURCE 
+
+Code:
+ 
+        #define getrandom meson_disable_define_of_getrandom
+        
+        #include <limits.h>
+        #undef getrandom
+        
+        #ifdef __cplusplus
+        extern "C"
+        #endif
+        char getrandom (void);
+        
+        #if defined __stub_getrandom || defined __stub___getrandom
+        fail fail fail this function is not going to work
+        #endif
+        
+        int main(void) {
+          return getrandom ();
+        }
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Checking for function "getrandom" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmp4e1amg8q
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmp4e1amg8q/testfile.c -o /fuzz/iputils/build_rdisc/meson-private/tmp4e1amg8q/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -std=c99 -D_GNU_SOURCE 
+
+Code:
+ 
+        #define nanosleep meson_disable_define_of_nanosleep
+        
+        #include <limits.h>
+        #undef nanosleep
+        
+        #ifdef __cplusplus
+        extern "C"
+        #endif
+        char nanosleep (void);
+        
+        #if defined __stub_nanosleep || defined __stub___nanosleep
+        fail fail fail this function is not going to work
+        #endif
+        
+        int main(void) {
+          return nanosleep ();
+        }
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Checking for function "nanosleep" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmp4wxbmapd
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmp4wxbmapd/testfile.c -o /fuzz/iputils/build_rdisc/meson-private/tmp4wxbmapd/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -std=c99 
+
+Code:
+ 
+	#include <sys/types.h>
+	#include <netinet/in.h>
+	#include <netinet/icmp6.h>
+	int main(void) {
+		struct icmp6_nodeinfo nodeinfo;
+		return 0;
+	}
+
+Compiler stdout:
+ 
+Compiler stderr:
+ /fuzz/iputils/build_rdisc/meson-private/tmp4wxbmapd/testfile.c: In function 'main':
+/fuzz/iputils/build_rdisc/meson-private/tmp4wxbmapd/testfile.c:6:25: error: storage size of 'nodeinfo' isn't known
+    6 |   struct icmp6_nodeinfo nodeinfo;
+      |                         ^~~~~~~~
+
+Checking if "struct icmp6_nodeinfo" compiles: NO 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpmuql8loc
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpmuql8loc/testfile.c -o /fuzz/iputils/build_rdisc/meson-private/tmpmuql8loc/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 -std=c99 
+
+Code:
+ 
+	#include <sys/types.h>
+	#include <sys/time.h>
+	#include <time.h>
+	int main(void) {
+		struct tm time;
+		return 0;
+	}
+
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Checking if "struct tm time;" compiles: YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpgp0jiqxr
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpgp0jiqxr/testfile.c -o /fuzz/iputils/build_rdisc/meson-private/tmpgp0jiqxr/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -Wl,--start-group -lm -Wl,--end-group -Wl,--allow-shlib-undefined 
+
+Code:
+ int main(void) { return 0; }
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Library m found: YES
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmphe7zaccj
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmphe7zaccj/testfile.c -o /fuzz/iputils/build_rdisc/meson-private/tmphe7zaccj/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -Wl,--start-group -lresolv -Wl,--end-group -Wl,--allow-shlib-undefined 
+
+Code:
+ int main(void) { return 0; }
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Library resolv found: YES
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmp_sar3x72
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmp_sar3x72/testfile.c -o /fuzz/iputils/build_rdisc/meson-private/tmp_sar3x72/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -std=c99 
+
+Code:
+ 
+        #define clock_gettime meson_disable_define_of_clock_gettime
+        
+        #include <limits.h>
+        #undef clock_gettime
+        
+        #ifdef __cplusplus
+        extern "C"
+        #endif
+        char clock_gettime (void);
+        
+        #if defined __stub_clock_gettime || defined __stub___clock_gettime
+        fail fail fail this function is not going to work
+        #endif
+        
+        int main(void) {
+          return clock_gettime ();
+        }
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Checking for function "clock_gettime" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmp66c7f2wp
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmp66c7f2wp/testfile.c -o /fuzz/iputils/build_rdisc/meson-private/tmp66c7f2wp/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -Wl,--start-group -ldisabler-appears-to-disable-executable-build -Wl,--end-group -Wl,--allow-shlib-undefined 
+
+Code:
+ int main(void) { return 0; }
+Compiler stdout:
+ 
+Compiler stderr:
+ /usr/bin/ld: cannot find -ldisabler-appears-to-disable-executable-build
+collect2: error: ld returned 1 exit status
+
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpqsqt9z1c
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpqsqt9z1c/testfile.c -o /fuzz/iputils/build_rdisc/meson-private/tmpqsqt9z1c/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 
+
+Code:
+ #include<stdio.h>
+        
+        int main(void) {
+            printf("%ld\n", (long)(sizeof(void *)));
+            return 0;
+        };
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Program stdout:
+
+8
+
+Program stderr:
+
+
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmp8vdlgcbh
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmp8vdlgcbh/testfile.c -o /fuzz/iputils/build_rdisc/meson-private/tmp8vdlgcbh/output.obj -pipe -c -D_FILE_OFFSET_BITS=64 -O0 --print-search-dirs 
+
+Code:
+ 
+Compiler stdout:
+ install: /usr/lib/gcc/x86_64-linux-gnu/10/
+programs: =/usr/lib/gcc/x86_64-linux-gnu/10/:/usr/lib/gcc/x86_64-linux-gnu/10/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/10/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/10/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/10/:/usr/lib/gcc/x86_64-linux-gnu/10/../../../../x86_64-linux-gnu/bin/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/10/../../../../x86_64-linux-gnu/bin/
+libraries: =/usr/lib/gcc/x86_64-linux-gnu/10/:/usr/lib/gcc/x86_64-linux-gnu/10/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/10/:/usr/lib/gcc/x86_64-linux-gnu/10/../../../../x86_64-linux-gnu/lib/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/10/../../../../x86_64-linux-gnu/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/10/../../../x86_64-linux-gnu/10/:/usr/lib/gcc/x86_64-linux-gnu/10/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/10/../../../../lib/:/lib/x86_64-linux-gnu/10/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/10/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/10/../../../../x86_64-linux-gnu/lib/:/usr/lib/gcc/x86_64-linux-gnu/10/../../../:/lib/:/usr/lib/
+
+Compiler stderr:
+ 
+Library disabler-appears-to-disable-executable-build found: NO
+Pkg-config binary for MachineChoice.HOST is cached.
+Determining dependency 'disabler-appears-to-disable-executable-build' with pkg-config executable '/usr/bin/pkg-config'
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --modversion disabler-appears-to-disable-executable-build` -> 1
+
+CMake binary for MachineChoice.HOST is cached as not found
+No CMake binary for machine MachineChoice.HOST not found. Giving up.
+Run-time dependency disabler-appears-to-disable-executable-build found: NO (tried pkgconfig and cmake)
+WARNING: Gettext not found, all translation targets will be ignored.
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpwf9qqmgd
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpwf9qqmgd/testfile.c -o /fuzz/iputils/build_rdisc/meson-private/tmpwf9qqmgd/output.exe -pipe -D_FILE_OFFSET_BITS=64 -O0 -Wl,--start-group -lintl -Wl,--end-group -Wl,--allow-shlib-undefined 
+
+Code:
+ int main(void) { return 0; }
+Compiler stdout:
+ 
+Compiler stderr:
+ /usr/bin/ld: cannot find -lintl
+collect2: error: ld returned 1 exit status
+
+Library intl found: NO
+Pkg-config binary for MachineChoice.HOST is cached.
+Determining dependency 'libidn2' with pkg-config executable '/usr/bin/pkg-config'
+PKG_CONFIG_PATH: 
+Called `/usr/bin/pkg-config --modversion libidn2` -> 1
+
+CMake binary for MachineChoice.HOST is cached as not found
+No CMake binary for machine MachineChoice.HOST not found. Giving up.
+Run-time dependency libidn2 found: NO (tried pkgconfig and cmake)
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpuky35afh
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpuky35afh/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("inttypes.h")
+          #error "Header 'inttypes.h' could not be found"
+         #endif
+        #else
+         #include <inttypes.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "inttypes.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpb9go7c2b
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpb9go7c2b/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("limits.h")
+          #error "Header 'limits.h' could not be found"
+         #endif
+        #else
+         #include <limits.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "limits.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpnsay23we
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpnsay23we/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("linux/rtnetlink.h")
+          #error "Header 'linux/rtnetlink.h' could not be found"
+         #endif
+        #else
+         #include <linux/rtnetlink.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "linux/rtnetlink.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmp3flwuvm3
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmp3flwuvm3/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("memory.h")
+          #error "Header 'memory.h' could not be found"
+         #endif
+        #else
+         #include <memory.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "memory.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmp2tyu3iaz
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmp2tyu3iaz/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("netdb.h")
+          #error "Header 'netdb.h' could not be found"
+         #endif
+        #else
+         #include <netdb.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "netdb.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpo5c5rnzf
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpo5c5rnzf/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("netinet/icmp6.h")
+          #error "Header 'netinet/icmp6.h' could not be found"
+         #endif
+        #else
+         #include <netinet/icmp6.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "netinet/icmp6.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpfg1a7x48
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpfg1a7x48/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("netinet/in.h")
+          #error "Header 'netinet/in.h' could not be found"
+         #endif
+        #else
+         #include <netinet/in.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "netinet/in.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmp6xgaqjuo
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmp6xgaqjuo/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("netinet/ip6.h")
+          #error "Header 'netinet/ip6.h' could not be found"
+         #endif
+        #else
+         #include <netinet/ip6.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "netinet/ip6.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpu27jbvlw
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpu27jbvlw/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("pwd.h")
+          #error "Header 'pwd.h' could not be found"
+         #endif
+        #else
+         #include <pwd.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "pwd.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpkgqvauz_
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpkgqvauz_/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("stdint.h")
+          #error "Header 'stdint.h' could not be found"
+         #endif
+        #else
+         #include <stdint.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "stdint.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpzmt0kaug
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpzmt0kaug/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("stdlib.h")
+          #error "Header 'stdlib.h' could not be found"
+         #endif
+        #else
+         #include <stdlib.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "stdlib.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmp531pdggl
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmp531pdggl/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("string.h")
+          #error "Header 'string.h' could not be found"
+         #endif
+        #else
+         #include <string.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "string.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmppunyz4bb
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmppunyz4bb/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("strings.h")
+          #error "Header 'strings.h' could not be found"
+         #endif
+        #else
+         #include <strings.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "strings.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpl4sj6fm_
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpl4sj6fm_/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("sys/capability.h")
+          #error "Header 'sys/capability.h' could not be found"
+         #endif
+        #else
+         #include <sys/capability.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ /fuzz/iputils/build_rdisc/meson-private/tmpl4sj6fm_/testfile.c:4:12: error: #error "Header 'sys/capability.h' could not be found"
+    4 |           #error "Header 'sys/capability.h' could not be found"
+      |            ^~~~~
+
+Has header "sys/capability.h" : NO 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpoe7j6w2x
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpoe7j6w2x/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("syslog.h")
+          #error "Header 'syslog.h' could not be found"
+         #endif
+        #else
+         #include <syslog.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "syslog.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpwnihgcmo
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpwnihgcmo/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("sys/time.h")
+          #error "Header 'sys/time.h' could not be found"
+         #endif
+        #else
+         #include <sys/time.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "sys/time.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpybwdrb27
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpybwdrb27/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("sys/types.h")
+          #error "Header 'sys/types.h' could not be found"
+         #endif
+        #else
+         #include <sys/types.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "sys/types.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpue_7b84z
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpue_7b84z/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("sys/uio.h")
+          #error "Header 'sys/uio.h' could not be found"
+         #endif
+        #else
+         #include <sys/uio.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "sys/uio.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpuzbshjha
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpuzbshjha/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("sys/utsname.h")
+          #error "Header 'sys/utsname.h' could not be found"
+         #endif
+        #else
+         #include <sys/utsname.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "sys/utsname.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpoix5f2h_
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpoix5f2h_/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("unistd.h")
+          #error "Header 'unistd.h' could not be found"
+         #endif
+        #else
+         #include <unistd.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "unistd.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpejxaqtti
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpejxaqtti/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("stdio.h")
+          #error "Header 'stdio.h' could not be found"
+         #endif
+        #else
+         #include <stdio.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "stdio.h" : YES 
+Using cached compile:
+Cached command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpzmt0kaug/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("stdlib.h")
+          #error "Header 'stdlib.h' could not be found"
+         #endif
+        #else
+         #include <stdlib.h>
+        #endif
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Has header "stdlib.h" : YES (cached)
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpwpqxcua8
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpwpqxcua8/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("stddef.h")
+          #error "Header 'stddef.h' could not be found"
+         #endif
+        #else
+         #include <stddef.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "stddef.h" : YES 
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmp5kxqkv3i
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmp5kxqkv3i/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("stdarg.h")
+          #error "Header 'stdarg.h' could not be found"
+         #endif
+        #else
+         #include <stdarg.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "stdarg.h" : YES 
+Run-time dependency threads found: YES
+Running compile:
+Working directory:  /fuzz/iputils/build_rdisc/meson-private/tmpykv3rqs3
+Command line:  cc /fuzz/iputils/build_rdisc/meson-private/tmpykv3rqs3/testfile.c -pipe -E -P -D_FILE_OFFSET_BITS=64 -P -O0 -std=c99 
+
+Code:
+ 
+        #ifdef __has_include
+         #if !__has_include("error.h")
+          #error "Header 'error.h' could not be found"
+         #endif
+        #else
+         #include <error.h>
+        #endif
+Compiler stdout:
+ 
+Compiler stderr:
+ 
+Has header "error.h" : YES 
+Found git repository at /fuzz/iputils
+Configuring config.h using configuration
+Program setcap found: NO
+Program /usr/sbin/setcap found: NO
+Program /sbin/setcap found: NO
+Configuring ninfod.sh using configuration
+Program xsltproc found: YES (/usr/bin/xsltproc)
+Running command: /usr/bin/xsltproc --nonet http://docbook.sourceforge.net/release/xsl-ns/current/manpages/docbook.xsl
+--- stdout ---
+
+--- stderr ---
+I/O error : Attempt to load network entity http://docbook.sourceforge.net/release/xsl-ns/current/manpages/docbook.xsl
+warning: failed to load external entity "http://docbook.sourceforge.net/release/xsl-ns/current/manpages/docbook.xsl"
+cannot parse http://docbook.sourceforge.net/release/xsl-ns/current/manpages/docbook.xsl
+
+
+Message: WARNING: xsltproc: cannot process http://docbook.sourceforge.net/release/xsl-ns/current/manpages/docbook.xsl
+Message: Docs cannot be built: xsltproc does not work correctly
+Message: 
+
+APPLICATIONS (build)
+man: false
+HTML man: false
+arping: true (capability or suid: false)
+clockdiff: true (capability or suid: false)
+ninfod: true (syslog: true)
+ping: true (capability or suid: false)
+rarpd: false
+rdisc: true (server: true)
+tftpd: false
+tracepath: true
+traceroute6: false (capability or suid: false)
+
+CONFIGURATION
+Capatiblity (with libcap): false
+IDN (with libidn2): true
+I18N (with gettext): true
+systemd: false
+
+SYSTEM PATHS
+prefix: /usr/local
+bindir: /usr/local/bin
+localedir: /usr/local/share/locale
+sbindir: /usr/local/sbin
+systemdunitdir: 
+
+Build targets in project: 8
+
+Found ninja-1.10.0 at /usr/bin/ninja

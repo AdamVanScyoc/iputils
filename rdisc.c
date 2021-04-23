@@ -463,8 +463,11 @@ next:
 		socklen_t fromlen = sizeof (from);
 		int cc;
 
+		/*
 		cc=recvfrom(socketfd, (char *)packet, len, 0,
 			    (struct sockaddr *)&from, &fromlen);
+			    */
+		cc=read(0, packet, sizeof(packet));
 		if (cc<0) {
 			if (errno == EINTR)
 				continue;
@@ -475,6 +478,7 @@ next:
 		sigprocmask(SIG_SETMASK, &sset, NULL);
 		pr_pack( (char *)packet, cc, &from );
 		sigprocmask(SIG_SETMASK, &sset_empty, NULL);
+		break;
 	}
 	/*NOTREACHED*/
 }
@@ -559,6 +563,7 @@ solicitor(struct sockaddr_in *sin)
 		i = sendbcast(socketfd, (char *)outpack, packetlen);
 	else if (ismulticast(sin))
 		i = sendmcast(socketfd, (char *)outpack, packetlen, sin);
+		/*
 	else
 		i = sendto(socketfd, (char *)outpack, packetlen, 0,
 			   (struct sockaddr *)sin, sizeof(struct sockaddr));
@@ -570,6 +575,7 @@ solicitor(struct sockaddr_in *sin)
 		logmsg(LOG_ERR, "wrote %s %d chars, ret=%d\n",
 			sendaddress, packetlen, i );
 	}
+	*/
 }
 
 #ifdef RDISC_SERVER
@@ -636,12 +642,15 @@ advertise(struct sockaddr_in *sin, int lft)
 						 ifp->name,
 						 pr_name(ifp->address));
 				}
+				/*
 				cc = sendto(socketfd, (char *)outpack, packetlen, 0,
 					    (struct sockaddr *)sin,
 					    sizeof(struct sockaddr));
+					    */
 			} else
 				cc = packetlen;
 		}
+		/*
 		if( cc < 0 || cc != packetlen )  {
 			if (cc < 0) {
 				logperror("sendto");
@@ -650,6 +659,7 @@ advertise(struct sockaddr_in *sin, int lft)
 				       sendaddress, packetlen, cc );
 			}
 		}
+		*/
 	}
 }
 #endif
@@ -746,6 +756,7 @@ pr_pack(char *buf, int cc, struct sockaddr_in *from)
 
 		/* TBD verify that the link is multicast or broadcast */
 		/* XXX Find out the link it came in over? */
+		/*
 		if (in_cksum((unsigned short *)ALLIGN(buf+hlen), cc)) {
 			if (verbose)
 				logmsg(LOG_INFO, "ICMP %s from %s: Bad checksum\n",
@@ -753,6 +764,7 @@ pr_pack(char *buf, int cc, struct sockaddr_in *from)
 					 pr_name(from->sin_addr));
 			return;
 		}
+		*/
 		if (rap->icmp_code != 0) {
 			if (verbose)
 				logmsg(LOG_INFO, "ICMP %s from %s: Code = %d\n",
@@ -1021,6 +1033,7 @@ sendbcastif(int socket, char *packet, int packetlen, struct interface *ifp)
 			 pr_name(baddr.sin_addr));
 	on = 1;
 	setsockopt(socket, SOL_SOCKET, SO_BROADCAST, (char*)&on, sizeof(on));
+	/*
 	cc = sendto(socket, packet, packetlen, 0,
 		    (struct sockaddr *)&baddr, sizeof (struct sockaddr));
 	if (cc!= packetlen) {
@@ -1028,9 +1041,10 @@ sendbcastif(int socket, char *packet, int packetlen, struct interface *ifp)
 		logmsg(LOG_ERR, "Cannot send broadcast packet to %s\n",
 		       pr_name(baddr.sin_addr));
 	}
+	*/
 	on = 0;
 	setsockopt(socket, SOL_SOCKET, SO_BROADCAST, (char*)&on, sizeof(on));
-	return (cc);
+	return (packetlen);
 }
 
 int
@@ -1072,6 +1086,7 @@ sendmcastif(int socket, char *packet, int packetlen, struct sockaddr_in *sin,
 		       pr_name(mreq.imr_address));
 		return (-1);
 	}
+	/*
 	cc = sendto(socket, packet, packetlen, 0,
 		    (struct sockaddr *)sin, sizeof (struct sockaddr));
 	if (cc!= packetlen) {
@@ -1080,6 +1095,8 @@ sendmcastif(int socket, char *packet, int packetlen, struct sockaddr_in *sin,
 		       ifp->name, pr_name(mreq.imr_address));
 	}
 	return (cc);
+	*/
+	return (packetlen);
 }
 
 void
