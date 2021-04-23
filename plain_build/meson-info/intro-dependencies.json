@@ -1,0 +1,1 @@
+[{"name": "systemd", "version": "247", "compile_args": [], "link_args": []}, {"name": "threads", "version": "unknown", "compile_args": ["-pthread"], "link_args": ["-pthread"]}]
